@@ -5,31 +5,36 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from faker import Faker
 
-browser = webdriver.Firefox()
-browser.get('https://charming-custard-8270f9.netlify.app/')
 
-pesel_elem = browser.find_element(By.ID, 'Pesel')
-pesel_elem.send_keys('88092316746')
+def test_form(first_name):
+    faker = Faker('pl_PL')  # ustawienie generatora w języku polskim
 
-name_elem = browser.find_element(By.ID, 'Name')
-name_elem.send_keys('Asia')
+    browser = webdriver.Firefox()
+    browser.get('https://charming-custard-8270f9.netlify.app/')
 
-email_elem = browser.find_element(By.ID, 'Email')
-email_elem.send_keys('asia@test.pl')
+    pesel_elem = browser.find_element(By.ID, 'pesel')
+    pesel_elem.send_keys(faker.pesel())
 
-pass_elem = browser.find_element(By.ID, 'Password')
-pass_elem.send_keys('123456')
+    name_elem = browser.find_element(By.ID, 'name')
+    name_elem.send_keys(first_name)
 
-nip_elem = browser.find_element(By.ID, 'Nip')
-nip_elem.send_keys('87654321')
+    email_elem = browser.find_element(By.ID, 'email')
+    email_elem.send_keys('asia@test.pl')
 
-idcard_elem = browser.find_element(By.ID, 'Id card number')
-idcard_elem.send_keys('111122223333444455556666')
+    pass_elem = browser.find_element(By.ID, 'password')
+    pass_elem.send_keys('123456')
 
-dropdown_elem = browser.find_element(By.ID, 'dropdown')
-select_elem = Select(dropdown_elem)
-select_elem.select_by_visible_text('Option 2')
+    nip_elem = browser.find_element(By.ID, 'nip')
+    nip_elem.send_keys('87654321')
+
+    idcard_elem = browser.find_element(By.ID, 'id_card_number')
+    idcard_elem.send_keys('111122223333444455556666')
+
+    dropdown_elem = browser.find_element(By.ID, 'dropdown')
+    select_elem = Select(dropdown_elem)
+    select_elem.select_by_visible_text('Option 2')
 
 
 # zrobić resztę - napisać kod selenium który wejdzie na tą stronkę wystawioną i wpisze coś w formularzu
@@ -44,3 +49,8 @@ select_elem.select_by_visible_text('Option 2')
 #1. `cd /home/joanna/Portfolio/portfolio`
 #2. `poetry shell
 #3. python portfolio/main.py
+
+names = ["Asia","basia","kasia","zosia"]
+
+for first_name in names:
+    test_form(first_name)

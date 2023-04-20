@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 selenium = "^4.8.3"
+faker = "^18.4.0"
 
 
 [build-system]
