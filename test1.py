@@ -50,7 +50,7 @@ def test_form(first_name):
 #2. `poetry shell
 #3. python portfolio/main.py
 
-names = ["Asia","basia","kasia","zosia"]
+#names = ["Asia","basia","kasia","zosia"]
 
-for first_name in names:
-    test_form(first_name)
+#for first_name in names:
+#    test_form(first_name)
